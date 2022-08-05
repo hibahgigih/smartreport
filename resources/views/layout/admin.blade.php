@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
 </head>
@@ -54,7 +55,7 @@
           </li>
     </ul>
   </nav>
- 
+
 
   <!-- /.navbar -->
 
@@ -68,7 +69,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        
+
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -81,8 +82,8 @@
             </p>
             </a>
             </li>
-              
-          
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
@@ -221,7 +222,7 @@
             </ul>
           </li
 
-          
+
           <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="fa fa-user"></i>
@@ -229,9 +230,9 @@
             </a>
           </li>
 
-          
-          
-          
+
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -306,9 +307,9 @@
 <script src="{{ asset('template/dist/js/demo.js') }}"></script>
 <!-- Page specific script -->
 <script>
-  $(function () {
+ $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": true,"searching": true,"paging": false,"info": false,
+      "responsive": false, "lengthChange": false, "autoWidth": true,"searching": true,"paging": false,"info": false,"scrollX": true,
       "buttons": ["copy", "csv", "excel"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
