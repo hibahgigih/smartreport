@@ -21,15 +21,11 @@
     </div>
 
     <div class="card-body">
-                <table id="example1" class="table table-hover display text-nowrap" place >
+                <table id="example1" class="table table-hover display text-nowrap" >
                   <thead>
                     <tr>
                         <th>Branch</th>
-                        <th>Kode Cabang/th>
-                        <th>Main Product</th>
                         <th>No Polis</th>
-                        <th>Renewal</th>
-                        <th>Update/th>
                         <th>Principal</th>
                         <th>Tanggal</th>
                         <th>TSI</th>
@@ -45,11 +41,7 @@
                     @foreach($dbbonding as $p)
                     <tbody>
                             <td>{{ $p->branch }}</td>
-                            <td>{{ $p->br_id }}</td>
-                            <td>{{ $p->cob_id }}</td>
-                            <td>{{ $p->pol_num }}</td>
-                            <td>{{ $p->renew_num }}</td>
-                            <td>{{ $p->updt_num }}</td>
+                            <td>{{ $p->br_id }}-{{ $p->cob_id }}-{{ $p->pol_num }}/{{ date('Y', strtotime($p->Mulai_Pertangungan)) }}/{{ $p->renew_num }}/{{ $p->updt_num }}</td>
                             <td>{{ $p->Principal }}</td>
                             <td>{{ $p->Tanggal }}</td>
                             <td>{{ $p->TSI }}</td>
