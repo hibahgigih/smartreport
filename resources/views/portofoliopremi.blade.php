@@ -21,8 +21,9 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+    
             <div class="card-body">
-                <table id="example1" class="table table-hover display text-nowrap" >
+                <table id="example1" class="table table-hover display text-nowrap" place >
                   <thead>
                     <tr>
                         <th>Cabang</th>

@@ -30,42 +30,52 @@
                 <h3 class="card-title">DataTable with minimal features & hover style</h3>
               </div> -->
               <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
+              <div class="card-body ">
+                <table id="example1" class="table table-hover display text-nowrap" >
                   <thead>
                   <tr>
                   <th>No Polisi</th>
-			      <th>Thn Kendaraan</th>
+			            <th>Thn Kendaraan</th>
                   <th>Nama Tertanggung</th>
-                  <th>Nomor Rangka</th>
-			      <th>Nomor Mesin</th>
+                  <th>Nomor Polis</th>
                   <th>Mulai</th>
                   <th>Akhir</th>
+			            <th>Nomor Rangka</th>
+			            <th>Nomor Mesin</th>
+                  <th>Crc</th>
                   <th>Nilai Premi</th>
-                  <th>Status Premi</th>
+                  <th>No Nota</th>
+			            <th>Status Premi</th>
+			            <th>Tgl Voucher</th>
                   </tr>
                   </thead>
                   @foreach($dbmotor as $p)
                   <tbody>
                   <td>{{ $p->nopolisi }}</td>
-			      <td>{{ $p->mfg_yr }}</td>
-			      <td>{{ $p->insrd_pr_nm }}</td>
+			            <td>{{ $p->mfg_yr }}</td>
+			            <td>{{ $p->insrd_pr_nm }}</td>
+			            <td>{{ $p->br_id }}-M{{ $p->pol_num }}/{{ date('Y', strtotime($p->awal)) }}/{{ $p->renew_num }}/{{ $p->updt_num }}</td>
+			            <td>{{ date('d/m/Y', strtotime($p->awal)) }}</td>
+                  <td>{{ date('d/m/Y', strtotime($p->akhir)) }}</td>
                   <td>{{ $p->chassis_num }}</td>
                   <td>{{ $p->engine_num }}</td>
-			      <td>{{ date('d/m/Y', strtotime($p->awal)) }}</td>
-                  <td>{{ date('d/m/Y', strtotime($p->akhir)) }}</td>
+                  <td>{{ $p->curr }}</td>
                   <td>{{ number_format($p->inst_amt, 2, ',', '.') }}</td>
-                  <td>{{ $p->Ket }}</td>
+                  <td>{{ $p->inv_num }}</td>
+			            <td>{{ $p->Ket }}</td>
+			            <td>{{ date('d/m/Y', strtotime($p->prodr_dt)) }}</td>
                   </tbody>
                   @endforeach
 
                   
                 </table>
+                <br>
                 {{ $dbmotor->links() }}
                 </div>
                 
               <!-- /.card-body -->
             </div>
+            <br
             <!-- /.card -->
           </div>
           <!-- /.col -->
