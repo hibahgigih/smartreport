@@ -20,10 +20,16 @@
       </div><!-- /.container-fluid -->
     </div>
 
-    <div class="card-body">
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
                 <table id="example1" class="table table-hover display text-nowrap" >
                   <thead>
                     <tr>
+                        <th>No.</th>
                         <th>Branch</th>
                         <th>No Polis</th>
                         <th>Principal</th>
@@ -38,8 +44,10 @@
                         <th>Status</th>
                     </tr>
                 </thead>
-                    @foreach($dbbonding as $p)
-                    <tbody>
+                <tbody>
+                    @foreach($dbbonding as $key => $p)
+                    <tr>
+                    <td>{{ $key+1 }}</td>
                             <td>{{ $p->branch }}</td>
                             <td>{{ $p->br_id }}-{{ $p->cob_id }}-{{ $p->pol_num }}/{{ date('Y', strtotime($p->Mulai_Pertangungan)) }}/{{ $p->renew_num }}/{{ $p->updt_num }}</td>
                             <td>{{ $p->Principal }}</td>
@@ -52,17 +60,21 @@
                             <td>{{ $p->Today }}</td>
                             <td>{{ $p->Hari }}</td>
                             <td>{{ $p->_Status_ }}</td>
+                      </tr>
+                      @endforeach
                         </tbody>
-                  @endforeach
+                  </table>
+                    <!-- <br>
+                  {{ $dbbonding->links() }} -->
                 </div>
             </div>
         </div>
-</table>
-<br>
-{{ $dbbonding->links() }}
+
 </div>
 </div>
 </div>
+
+
     
 
 @endsection

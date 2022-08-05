@@ -309,7 +309,7 @@
 <script>
  $(function () {
     $("#example1").DataTable({
-      "responsive": false, "lengthChange": false, "autoWidth": true,"searching": true,"paging": false,"info": false,"scrollX": true,
+      "responsive": false, "lengthChange": false, "autoWidth": true,"searching": true,"paging": true,"info": true,"scrollX": true,
       "buttons": ["copy", "csv", "excel"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({

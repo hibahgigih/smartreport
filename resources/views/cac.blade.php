@@ -26,14 +26,11 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <!-- <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
-              </div> -->
-              <!-- /.card-header -->
               <div class="card-body ">
                 <table id="example1" class="table table-hover display text-nowrap" >
                   <thead>
                   <tr>
+                  <th>No.</th>
                   <th>No Polisi</th>
 			            <th>Thn Kendaraan</th>
                   <th>Nama Tertanggung</th>
@@ -49,8 +46,10 @@
 			            <th>Tgl Voucher</th>
                   </tr>
                   </thead>
-                  @foreach($dbmotor as $p)
                   <tbody>
+                  @foreach($dbmotor as $key => $p)
+                  <tr>
+                  <td>{{ $key+1 }}</td>
                   <td>{{ $p->nopolisi }}</td>
 			            <td>{{ $p->mfg_yr }}</td>
 			            <td>{{ $p->insrd_pr_nm }}</td>
@@ -64,18 +63,17 @@
                   <td>{{ $p->inv_num }}</td>
 			            <td>{{ $p->Ket }}</td>
 			            <td>{{ date('d/m/Y', strtotime($p->prodr_dt)) }}</td>
-                  </tbody>
+                  </tr>
                   @endforeach
+                  </tbody>
 
-                  
                 </table>
-                <br>
+                <!-- <br>
                 {{ $dbmotor->links() }}
-                </div>
+                </div> -->
                 
               <!-- /.card-body -->
             </div>
-            <br
             <!-- /.card -->
           </div>
           <!-- /.col -->
@@ -83,6 +81,9 @@
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-  
+      </div>
+      </div>
+
+   
 
     @endsection

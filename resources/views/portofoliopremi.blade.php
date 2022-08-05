@@ -22,10 +22,16 @@
       </div><!-- /.container-fluid -->
     </div>
     
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
             <div class="card-body">
                 <table id="example1" class="table table-hover display text-nowrap" place >
                   <thead>
                     <tr>
+                        <th>No.</th>
                         <th>Cabang</th>
                         <th>No Polis</th>
                         <th>Main Product</th>
@@ -58,8 +64,9 @@
                         <th>Tgl Voucher</th>
                     </tr>
                 </thead>
-                    @foreach($dbportofolio_premi as $p)
-                    <tbody>
+                <tbody>
+                    @foreach($dbportofolio_premi as $key => $p)
+                            <td>{{ $key+1 }}</td>
                             <td>{{ $p->br_nm }}</td>
                             <td>{{ $p->nopolis }}</td>
                             <td>{{ $p->Main_Product }}</td>
@@ -90,19 +97,19 @@
                             <td>{{ $p->Tgl_Nota }}</td>
                             <td>{{ $p->NoVoucher }}</td>
                             <td>{{ date('d/m/Y', strtotime($p->Tgl_Voucher)) }}</td>
+                            </tr>
+                            @endforeach
                         </tbody>
-                  @endforeach
+                        </table>
                 </div>
             </div>
         </div>
-</table>
-<br>
-{{ $dbportofolio_premi->links() }}
-</div>
-</div>
-</div>
 
-
+<!-- <br>
+{{ $dbportofolio_premi->links() }} -->
+</div>
+</div>
+</div>
 
 
 

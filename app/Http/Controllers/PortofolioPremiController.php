@@ -10,7 +10,7 @@ class PortofolioPremiController extends Controller
     public function portofoliopremi()
     {
         $portofoliopremi = DataP::paginate(8);
-        // $portofoliopremi = DB::table('dbportofolio_premi')->paginate(4);
+        // $portofoliopremi = DataP::all();
         return view('portofoliopremi', ['dbportofolio_premi' => $portofoliopremi]);
     }
 }
