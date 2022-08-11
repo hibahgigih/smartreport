@@ -21,7 +21,7 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    
+
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -105,8 +105,7 @@
             </div>
         </div>
 
-<!-- <br>
-{{ $dbportofolio_premi->links() }} -->
+        {{ $dbportofolio_premi->links() }}
 </div>
 </div>
 </div>

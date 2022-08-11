@@ -10,13 +10,25 @@ class DataC extends Model
     public $table = "dbmotor";
     use HasFactory;
     protected $fillable = [
+        'ID',
         'nopolisi',
         'mfg_yr',
         'insrd_pr_nm',
-        'chassis_num',
-        'engine_num',
+        'br_id',
+        'pol_num',
         'awal',
         'akhir',
+        'chassis_num',
+        'engine_num',
+        'curr',
         'inst_amt',
+        'inv_num',
+        'Ket',
+        'prodr_dt',
     ];
+
+    public function getFullNoPolis()
+    {
+        return "{$this->br_id} {$this->pol_num}";
+    }
 }
