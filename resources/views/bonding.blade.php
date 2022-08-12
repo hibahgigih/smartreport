@@ -60,8 +60,8 @@
 
     $(document).ready(function () {
         $(".bonding").DataTable({
-        extend: ["copy", "csv", "excel"],
-        autoWidth: true,
+        buttons: ["copy", "csv", "excel"],
+        autoWidth: false,
         scrollX: true,
         searching: true,
         cache: true,
@@ -88,7 +88,7 @@
         ],
         columnDefs : [{
             render : function (data,type,row){
-                return data + ' -  ' + row['cob_id'] + '-' + row['pol_num'] + '/' + row['Mulai_Pertanggungan'] + '/' + row['renew_num'] + '/' + row['updt_num']; 
+                return data + ' -  ' + row['cob_id'] + '-' + row['pol_num'] + '/' + new Date(row['Mulai_Pertanggungan']).getFullYear() + '/' + row['renew_num'] + '/' + row['updt_num']; 
             },
             "targets" : 2
             },

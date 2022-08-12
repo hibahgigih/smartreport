@@ -29,7 +29,7 @@
               <div class="card-body ">
                 <table class="table table-hover cac nowrap" >
                     <thead>
-                        <th>No.</th>
+                        <!-- <th>No.</th> -->
                         <th>No Polisi</th>
                         <th>Thn Kendaraan</th>
                         <th>Nama Tertanggung</th>
@@ -47,7 +47,7 @@
                     <tbody></tbody>
                     <tfoot>
                     <tr>
-                        <th>No.</th>
+                        <!-- <th>No.</th> -->
                         <th>No Polisi</th>
                         <th>Thn Kendaraan</th>
                         <th>Nama Tertanggung</th>
@@ -101,7 +101,7 @@
         },
  
 
-        extend: ["copy", "csv", "excel"],
+        // extend: ["copy", "csv", "excel"],
         autoWidth: true,
         scrollX: true,
         searching: true,
@@ -109,37 +109,46 @@
         destroy: true,
         processing: true,
         serverSide: true,
+        deferRender: true,
         type: "GET",
         dataType: "json",
         ajax: "{{ route('cac') }}",
         columns: [
-            { "data": "ID" },
+            // { "data": "ID" },
             { "data": "nopolisi" },
             { "data": "mfg_yr" },
             { "data": "insrd_pr_nm" },
             { "data": "br_id"},
-            { "data": "awal", },
-            { "data": "akhir" },
+            { "data": "awal", render: DataTable.render.datetime('YYYY-MM-DD')},
+            { "data": "akhir", render: DataTable.render.datetime('YYYY-MM-DD')},
             { "data": "chassis_num" },
             { "data": "engine_num" },
             { "data": "curr" },
             { "data": "inst_amt" },
             { "data": "inv_num" },
             { "data": "Ket" },
-            { "data": "prodr_dt" },
+            { "data": "prodr_dt", render: DataTable.render.datetime('YYYY-MM-DD') },
 
         ],
 
         columnDefs : [{
             render : function (data,type,row){
-                return data + ' -  ' + 'M' + '-' + row['pol_num'] + '/' + row['awal'] + '/' + row['renew_num'] + '/' + row['updt_num']; 
+                return data + ' -  ' + 'M' + '-' + row['pol_num'] + '/' + new Date(row['awal']).getFullYear() + '/' + row['renew_num'] + '/' + row['updt_num']; 
             },
-            "targets" : 4,
-
+            "targets" : 3,
+            
             },
 
             {"visible": false, "targets" : 1}
         ],
+
+        // columnDefs: [
+        //     {
+        //         target : 5,
+        //         render: DataTable.render.datetime('YYYY-MM-DD'),
+        //     },
+        // ],
+
         
             dom: 'Bfrtip',
             buttons: [

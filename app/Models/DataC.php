@@ -9,6 +9,7 @@ class DataC extends Model
 {
     public $table = "dbmotor";
     use HasFactory;
+    protected $hidden = ['ID'];
     protected $fillable = [
         'ID',
         'nopolisi',
