@@ -26,7 +26,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <table id="example1" class="table table-hover display text-nowrap" >
+              <table class="table table-hover bonding nowrap" >
                   <thead>
                     <tr>
                         <th>No.</th>
@@ -37,7 +37,7 @@
                         <th>TSI</th>
                         <th>Nilai Jaminan</th>
                         <th>Jenis Jaminan</th>
-                        <th>Mulai Pertangungan</th>
+                        <th>Mulai Pertanggungan</th>
                         <th>Akhir Pertanggungan</th>
                         <th>Today</th>
                         <th>Hari</th>
@@ -45,27 +45,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($dbbonding as $key => $p)
-                    <tr>
-                    <td>{{ $key+1 }}</td>
-                            <td>{{ $p->branch }}</td>
-                            <td>{{ $p->br_id }}-{{ $p->cob_id }}-{{ $p->pol_num }}/{{ date('Y', strtotime($p->Mulai_Pertangungan)) }}/{{ $p->renew_num }}/{{ $p->updt_num }}</td>
-                            <td>{{ $p->Principal }}</td>
-                            <td>{{ $p->Tanggal }}</td>
-                            <td>{{ $p->TSI }}</td>
-                            <td>{{ $p->Nilai_Jaminan }}</td>
-                            <td>{{ $p->Jenis_Jaminan }}</td>
-                            <td>{{ $p->Mulai_Pertangungan }}</td>
-                            <td>{{ $p->Akhir_Pertanggungan }}</td>
-                            <td>{{ $p->Today }}</td>
-                            <td>{{ $p->Hari }}</td>
-                            <td>{{ $p->_Status_ }}</td>
-                      </tr>
-                      @endforeach
-                        </tbody>
-                  </table>
-                    <!-- <br>
-                  {{ $dbbonding->links() }} -->
+                </tbody>
+                </table>
                 </div>
             </div>
         </div>
@@ -74,6 +55,55 @@
 </div>
 </div>
 
+@push('js')
+<script>
+
+    $(document).ready(function () {
+        $(".bonding").DataTable({
+        extend: ["copy", "csv", "excel"],
+        autoWidth: true,
+        scrollX: true,
+        searching: true,
+        cache: true,
+        destroy: true,
+        processing: true,
+        serverSide: true,
+        type: "GET",
+        dataType: "json",
+        ajax: "{{ route('bonding') }}",
+        columns: [
+            { "data": "ID" },
+            { "data": "branch" },
+            { "data": "br_id" },
+            { "data": "Principal" },
+            { "data": "Tanggal"},
+            { "data": "TSI"},
+            { "data": "Nilai_Jaminan"},
+            { "data": "Jenis_Jaminan" },
+            { "data": "Mulai_Pertanggungan" },
+            { "data": "Akhir_Pertanggungan" },
+            { "data": "Today" },
+            { "data": "Hari" },
+            { "data": "_Status_" },
+        ],
+        columnDefs : [{
+            render : function (data,type,row){
+                return data + ' -  ' + row['cob_id'] + '-' + row['pol_num'] + '/' + row['Mulai_Pertanggungan'] + '/' + row['renew_num'] + '/' + row['updt_num']; 
+            },
+            "targets" : 2
+            },
+            {"visible": false, "targets" : 1}
+        ],
+
+            dom: 'Bfrtip',
+            buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+    });
+    });
+</script>
+
+@endpush
 
     
 

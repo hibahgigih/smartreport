@@ -28,7 +28,7 @@
           <div class="col-12">
             <div class="card">
             <div class="card-body">
-                <table id="example1" class="table table-hover display text-nowrap" place >
+            <table class="table table-hover portofoliopremi nowrap bg-light" >
                   <thead>
                     <tr>
                         <th>No.</th>
@@ -65,51 +65,74 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($dbportofolio_premi as $key => $p)
-                            <td>{{ $key+1 }}</td>
-                            <td>{{ $p->br_nm }}</td>
-                            <td>{{ $p->nopolis }}</td>
-                            <td>{{ $p->Main_Product }}</td>
-                            <td>{{ $p->Sub_Main_Product }}</td>
-                            <td>{{ $p->Nama_Tertanggung }}</td>
-                            <td>{{ $p->Alamat_Risiko }}</td>
-                            <td>{{ $p->Premium_Name }}</td>
-                            <td>{{ $p->Broker_Name }}</td>
-                            <td>{{ $p->Other_Name }}</td>
-                            <td>{{ $p->Geofgrafi_Area }}</td>
-                            <td>{{ $p->Sumber_Bisnis }}</td>
-                            <td>{{ $p->Pemberi_Bisnis }}</td>
-                            <td>{{ $p->Pembawa_Bisnis }}</td>
-                            <td>{{ $p->uw_yr }}</td>
-                            <td>{{ $p->Mata_uang }}</td>
-                            <td>{{ $p->Kurs }}</td>
-                            <td>{{ date('d/m/Y', strtotime($p->Tgl_Awal)) }}</td>
-                            <td>{{ date('d/m/Y', strtotime($p->Tgl_Akhir)) }}</td>
-                            <td>{{ $p->Tgl_Trans }}</td>
-                            <td>{{ $p->Status_Polis }}</td>
-                            <td>{{ $p->TSI }}</td>
-                            <td>{{ $p->TSI_100 }}</td>
-                            <td>{{ $p->PREMI }}</td>
-                            <td>{{ $p->OUTGO }}</td>
-                            <td>{{ $p->tga_pct }}</td>
-                            <td>{{ $p->your_ref_num }}</td>
-                            <td>{{ $p->DNCN }}</td>
-                            <td>{{ $p->Tgl_Nota }}</td>
-                            <td>{{ $p->NoVoucher }}</td>
-                            <td>{{ date('d/m/Y', strtotime($p->Tgl_Voucher)) }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        </table>
+                </tbody>
+                </table>
                 </div>
             </div>
         </div>
-
-        {{ $dbportofolio_premi->links() }}
 </div>
 </div>
 </div>
 
+
+@push('js')
+<script>
+
+    $(document).ready(function () {
+        $(".portofoliopremi").DataTable({
+        extend: ["copy", "csv", "excel"],
+        autoWidth: true,
+        scrollX: true,
+        searching: true,
+        cache: true,
+        destroy: true,
+        processing: true,
+        serverSide: true,
+        type: "GET",
+        dataType: "json",
+        ajax: "{{ route('portofoliopremi') }}",
+        columns: [
+            { "data": "id" },
+            { "data": "br_nm" },
+            { "data": "nopolis" },
+            { "data": "Main_Product" },
+            { "data": "Sub_Main_Product"},
+            { "data": "Nama_Tertanggung"},
+            { "data": "Alamat_Risiko"},
+            { "data": "Premium_Name" },
+            { "data": "Broker_Name" },
+            { "data": "Other_Name" },
+            { "data": "Geofgrafi_Area" },
+            { "data": "Sumber_Bisnis" },
+            { "data": "Pemberi_Bisnis" },
+            { "data": "Pembawa_Bisnis" },
+            { "data": "uw_yr" },
+            { "data": "Mata_uang" },
+            { "data": "Kurs" },
+            { "data": "Tgl_Awal" },
+            { "data": "Tgl_Akhir" },
+            { "data": "Tgl_Trans" },
+            { "data": "Status_Polis" },
+            { "data": "TSI" },
+            { "data": "TSI_100" },
+            { "data": "PREMI" },
+            { "data": "OUTGO" },
+            { "data": "tga_pct" },
+            { "data": "your_ref_num" },
+            { "data": "DNCN" },
+            { "data": "Tgl_Nota" },
+            { "data": "NoVoucher" },
+            { "data": "Tgl_Voucher" }
+        ],
+            dom: 'Bfrtip',
+            buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+    });
+    });
+</script>
+
+@endpush
 
 
 @endsection

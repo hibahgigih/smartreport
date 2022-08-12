@@ -16,6 +16,8 @@ class DataC extends Model
         'insrd_pr_nm',
         'br_id',
         'pol_num',
+        'renew_num',
+        'updt_num',
         'awal',
         'akhir',
         'chassis_num',

@@ -10,6 +10,7 @@ class DataB extends Model
     public $table = "dbbonding";
     use HasFactory;
     protected $fillable = [
+        'ID',
         'branch',
         'br_id',
         'cob_id',
@@ -19,7 +20,7 @@ class DataB extends Model
         'Tanggal',
         'Nilai_jaminan',
         'Jenis_Jaminan',
-        'Mulai_Pertangungan',
+        'Mulai_Pertanggungan',
         'Akhir_Pertanggungan',
         'Today',
         'Hari',

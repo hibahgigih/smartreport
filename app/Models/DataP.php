@@ -10,7 +10,7 @@ class DataP extends Model
     public $table = "dbportofolio_premi";
     use HasFactory;
     protected $fillable = [
-        'Id',
+        'id',
         'br_nm',
         'nopolis',
         'Main_Product',
