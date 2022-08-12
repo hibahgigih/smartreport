@@ -118,7 +118,7 @@
             { "data": "mfg_yr" },
             { "data": "insrd_pr_nm" },
             { "data": "br_id"},
-            { "data": "awal"},
+            { "data": "awal", },
             { "data": "akhir" },
             { "data": "chassis_num" },
             { "data": "engine_num" },
