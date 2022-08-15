@@ -19,6 +19,7 @@ class DataC extends Model
         'pol_num',
         'renew_num',
         'updt_num',
+        'risk_num',
         'awal',
         'akhir',
         'chassis_num',

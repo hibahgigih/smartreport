@@ -9,6 +9,7 @@ class DataB extends Model
 {
     public $table = "dbbonding";
     use HasFactory;
+    protected $hidden = ['ID'];
     protected $fillable = [
         'ID',
         'branch',

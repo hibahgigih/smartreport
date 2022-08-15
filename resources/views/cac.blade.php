@@ -34,6 +34,7 @@
                         <th>Thn Kendaraan</th>
                         <th>Nama Tertanggung</th>
                         <th>Nomor Polis</th>
+                        <th>Risk Num</th>
                         <th>Mulai</th>
                         <th>Akhir</th>
                         <th>Nomor Rangka</th>
@@ -52,6 +53,7 @@
                         <th>Thn Kendaraan</th>
                         <th>Nama Tertanggung</th>
                         <th>Nomor Polis</th>
+                        <th>Risk Num</th>
                         <th>Mulai</th>
                         <th>Akhir</th>
                         <th>Nomor Rangka</th>
@@ -99,9 +101,16 @@
                     });
                 });
         },
- 
 
-        // extend: ["copy", "csv", "excel"],
+       
+        dom: 'Bfrtip',
+        lengthMenu: [
+                    [ 10, 25, 50, -1 ],
+                    [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                    ],
+        buttons: [
+              'pageLength','copy', 'csv', 'excel', 'pdf', 'print'
+        ],
         autoWidth: true,
         scrollX: true,
         searching: true,
@@ -118,7 +127,8 @@
             { "data": "nopolisi" },
             { "data": "mfg_yr" },
             { "data": "insrd_pr_nm" },
-            { "data": "br_id"},
+            { "data": "pol_num"},
+            { "data": "risk_num"},
             { "data": "awal", render: DataTable.render.datetime('YYYY-MM-DD')},
             { "data": "akhir", render: DataTable.render.datetime('YYYY-MM-DD')},
             { "data": "chassis_num" },
@@ -131,9 +141,10 @@
 
         ],
 
+
         columnDefs : [{
             render : function (data,type,row){
-                return data + ' -  ' + 'M' + '-' + row['pol_num'] + '/' + new Date(row['awal']).getFullYear() + '/' + row['renew_num'] + '/' + row['updt_num']; 
+                return row['br_id'] + ' -  ' + 'M' + '-' + data + '/' + new Date(row['awal']).getFullYear() + '/' + row['renew_num'] + '/' + row['updt_num']; 
             },
             "targets" : 3,
             
@@ -142,18 +153,9 @@
             {"visible": false, "targets" : 1}
         ],
 
-        // columnDefs: [
-        //     {
-        //         target : 5,
-        //         render: DataTable.render.datetime('YYYY-MM-DD'),
-        //     },
-        // ],
-
         
-            dom: 'Bfrtip',
-            buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
+        
+           
     });
 
     $('.cac tfoot th').each(function () {

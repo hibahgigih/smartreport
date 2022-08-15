@@ -29,7 +29,7 @@
               <table class="table table-hover bonding nowrap" >
                   <thead>
                     <tr>
-                        <th>No.</th>
+                        <!-- <th>No.</th> -->
                         <th>Branch</th>
                         <th>No Polis</th>
                         <th>Principal</th>
@@ -46,6 +46,23 @@
                 </thead>
                 <tbody>
                 </tbody>
+                <tfoot>
+                  <tr>
+                        <!-- <th>No.</th> -->
+                        <th>Branch</th>
+                        <th>No Polis</th>
+                        <th>Principal</th>
+                        <th>Tanggal</th>
+                        <th>TSI</th>
+                        <th>Nilai Jaminan</th>
+                        <th>Jenis Jaminan</th>
+                        <th>Mulai Pertanggungan</th>
+                        <th>Akhir Pertanggungan</th>
+                        <th>Today</th>
+                        <th>Hari</th>
+                        <th>Status</th>
+                  </tr>
+                </tfoot>
                 </table>
                 </div>
             </div>
@@ -60,7 +77,29 @@
 
     $(document).ready(function () {
         $(".bonding").DataTable({
-        buttons: ["copy", "csv", "excel"],
+        initComplete: function () {
+            // Apply the search
+            this.api()
+                .columns()
+                .every(function () {
+                    var that = this;
+ 
+                    $('input', this.footer()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+        },
+
+        dom: 'Bfrtip',
+        lengthMenu: [
+                    [ 10, 25, 50, -1 ],
+                    [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                    ],
+        buttons: [
+              'pageLength','copy', 'csv', 'excel', 'pdf', 'print'
+        ],
         autoWidth: false,
         scrollX: true,
         searching: true,
@@ -72,7 +111,7 @@
         dataType: "json",
         ajax: "{{ route('bonding') }}",
         columns: [
-            { "data": "ID" },
+            // { "data": "ID" },
             { "data": "branch" },
             { "data": "br_id" },
             { "data": "Principal" },
@@ -95,11 +134,13 @@
             {"visible": false, "targets" : 1}
         ],
 
-            dom: 'Bfrtip',
-            buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
     });
+
+    $('.bonding tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Cari ' + title + '" />');
+    });
+
     });
 </script>
 
