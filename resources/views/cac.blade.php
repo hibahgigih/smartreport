@@ -39,6 +39,7 @@
                         <th>Akhir</th>
                         <th>Nomor Rangka</th>
                         <th>Nomor Mesin</th>
+                        <th>Deskripsi Kend</th>
                         <th>Crc</th>
                         <th>Nilai Premi</th>
                         <th>No Nota</th>
@@ -58,6 +59,7 @@
                         <th>Akhir</th>
                         <th>Nomor Rangka</th>
                         <th>Nomor Mesin</th>
+                        <th>Deskripsi Kend</th>
                         <th>Crc</th>
                         <th>Nilai Premi</th>
                         <th>No Nota</th>
@@ -93,7 +95,7 @@
                 .columns()
                 .every(function () {
                     var that = this;
- 
+
                     $('input', this.footer()).on('keyup change clear', function () {
                         if (that.search() !== this.value) {
                             that.search(this.value).draw();
@@ -102,7 +104,7 @@
                 });
         },
 
-       
+
         dom: 'Bfrtip',
         lengthMenu: [
                     [ 10, 25, 50, -1 ],
@@ -133,8 +135,9 @@
             { "data": "akhir", render: DataTable.render.datetime('YYYY-MM-DD')},
             { "data": "chassis_num" },
             { "data": "engine_num" },
+            { "data": "vehicle_desc" },
             { "data": "curr" },
-            { "data": "inst_amt" },
+            { "data": "inst_amt", render: DataTable.render.number( ',', '.', 2, 'Rp. ' )},
             { "data": "inv_num" },
             { "data": "Ket" },
             { "data": "prodr_dt", render: DataTable.render.datetime('YYYY-MM-DD') },
@@ -144,18 +147,17 @@
 
         columnDefs : [{
             render : function (data,type,row){
-                return row['br_id'] + ' -  ' + 'M' + '-' + data + '/' + new Date(row['awal']).getFullYear() + '/' + row['renew_num'] + '/' + row['updt_num']; 
+                return row['br_id'] + ' -  ' + 'M' + '-' + data + '/' + new Date(row['awal']).getFullYear() + '/' + row['renew_num'] + '/' + row['updt_num'];
             },
             "targets" : 3,
-            
+
             },
 
-            {"visible": false, "targets" : 1}
         ],
 
-        
-        
-           
+
+
+
     });
 
     $('.cac tfoot th').each(function () {
@@ -163,8 +165,8 @@
         $(this).html('<input type="text" placeholder="Cari ' + title + '" />');
     });
 
-   
-       
+
+
 
 
     });

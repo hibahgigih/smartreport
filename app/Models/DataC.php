@@ -24,6 +24,7 @@ class DataC extends Model
         'akhir',
         'chassis_num',
         'engine_num',
+        'vehicle_desc',
         'curr',
         'inst_amt',
         'inv_num',
@@ -31,8 +32,4 @@ class DataC extends Model
         'prodr_dt',
     ];
 
-    public function getFullNoPolis()
-    {
-        return "{$this->br_id} {$this->pol_num}";
-    }
 }
