@@ -28,25 +28,30 @@
           <div class="col-12">
             <div class="card">
             <div class="card-body">
-            <!-- <table border="0" cellspacing="5" cellpadding="5">
-              <tbody>
-              <tr>
-              <td>Start date:</td>
-              <td><input type="text" id="min" name="min"></td>
-              </tr>
-              <tr>
-              <td>End date:</td>
-              <td><input type="text" id="max" name="max"></td>
-              </tr>
-              </tbody></table> -->
-              <div class="row well input-daterange">
+
+            <div class="row input-daterange">
+                <div class="col-md-4">
+                    <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" readonly />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" readonly />
+                </div>
+                <div class="col-md-4">
+                    <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
+                    <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
+                </div>
+            </div>
+            <br />
+       
+    
+          <!-- <div class="row well input-daterange">
           <div class="col-sm-4">
           <label class="control-label">Jenis Tanggal</label>
           <select class="form-control" name="gender" id="gender" style="height: 40px;">
             <option value="">- Pilih -</option>
-            <option value="male">Jangka Waktu Awal</option>
-            <option value="female">Jangka Waktu Akhir</option>
-            <option value="female">Transaksi</option>
+            <option value="Tgl_Awal">Jangka Waktu Awal</option>
+            <option value="Tgl_Akhir">Jangka Waktu Akhir</option>
+            <option value="Tgl_Trans">Transaksi</option>
           </select>
           </div>
 
@@ -64,11 +69,14 @@
           <button class="btn btn-success btn-block" type="submit" name="filter" id="filter" style="margin-top: 30px">
             <i class="fa fa-filter"></i> Filter
           </button>
+          
           </div>
           
           <div class="col-sm-12 text-danger" id="error_log"></div>
           </div>
-          <br/><br/>
+          <br/> -->
+
+  
 
             <table class="table table-hover portofoliopremi nowrap bg-light" >
                   <thead>
@@ -225,7 +233,7 @@
             { "data": "NoVoucher" },
             { "data": "Tgl_Voucher" }
         ],
-
+  
         
             
     });
@@ -235,43 +243,62 @@
         $(this).html('<input type="text" placeholder="Cari ' + title + '" />');
     });
 
-    var minDate, maxDate;
- 
-    // Custom filtering function which will search data in column four between two values
-    $.fn.dataTable.ext.search.push(
-    function( settings, data, dataIndex ) {
-        var min = minDate.val();
-        var max = maxDate.val();
-        var date = new Date( data[4] );
- 
-        if (
-            ( min === null && max === null ) ||
-            ( min === null && date <= max ) ||
-            ( min <= date   && max === null ) ||
-            ( min <= date   && date <= max )
-        ) {
-            return true;
-        }
-        return false;
-        }
-    );
- 
-    // Create date inputs
-    minDate = new DateTime($('#min'), {
-        format: 'MMMM Do YYYY'
-    });
-    maxDate = new DateTime($('#max'), {
-        format: 'MMMM Do YYYY'
-    });
- 
-    // DataTables initialisation
-    var table = $('#example').DataTable();
- 
-    // Refilter the table
-    $('#min, #max').on('change', function () {
-        table.draw();
-    });
+    var date = new Date();
 
+    $('.input-daterange').datepicker({
+        todayBtn:'linked',
+        format: "yyyy-mm-dd",
+        autoclose: true
+      });
+
+      load_data();
+
+ function load_data(from_date = '', to_date = '')
+ {
+  $('.cac').DataTable({
+   processing: true,
+   serverSide: true,
+   ajax: {
+    url:'{{ route("portofoliopremi") }}',
+    data:{from_date:from_date, to_date:to_date}
+   },
+   columns: [
+    {
+     data:'br_nm',
+     name:'br_nm'
+    },
+    {
+     data:'nopolis',
+     name:'nopolis'
+    },
+    {
+     data:'nopolis',
+     name:'nopolis'
+    },
+   ]
+  });
+ }
+
+ $('#filter').click(function(){
+  var from_date = $('#from_date').val();
+  var to_date = $('#to_date').val();
+  if(from_date != '' &&  to_date != '')
+  {
+   $('.cac').DataTable().destroy();
+   load_data(from_date, to_date);
+  }
+  else
+  {
+   alert('Both Date is required');
+  }
+ });
+
+ $('#refresh').click(function(){
+  $('#from_date').val('');
+  $('#to_date').val('');
+  $('.cac').DataTable().destroy();
+  load_data();
+ });
 
     });
 </script>
