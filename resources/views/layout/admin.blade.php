@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="{{ url('template/dist/img/logo.png') }}">
   <title>PT. Asuransi Staco Mandiri</title>
@@ -10,11 +11,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/fontawesome.min.css') }}"> -->
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- DataTables -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
@@ -69,11 +72,20 @@
     <!-- Brand Logo -->
     <a href="https://stacoinsurance.com" class="brand-link">
       <img src="{{ asset('template/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">STACO INSURANCE</span>
+      <span class="brand-text font-weight-light">SMARTREPORT</span>
     </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
+     <!-- Sidebar -->
+     <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{ asset('template/dist/img/user-image.jpeg') }}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        </div>
+      </div>
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -88,14 +100,16 @@
             </a>
             </li>
 
-
+        
           <li class="nav-item">
             <a href="#" class="nav-link">
+            @if(Auth::user()->role == 'IT' || Auth::user()->role == 'Klaim')
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Klaim
                 <i class="fas fa-angle-left right"></i>
               </p>
+              @endif
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -110,28 +124,18 @@
                   <p>Data CAC</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/jsgrid.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
-                </a>
-              </li> -->
             </ul>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
+            @if(Auth::user()->role == 'IT' || Auth::user()->role == 'Uw' )
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Teknik
                 <i class="fas fa-angle-left right"></i>
               </p>
+              @endif
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -169,11 +173,13 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
+            @if(Auth::user()->role == 'IT' || Auth::user()->role == 'Aktuaris')
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Aktuaris
                 <i class="fas fa-angle-left right"></i>
               </p>
+              @endif
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -182,28 +188,19 @@
                   <p>Data Portofolio</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/jsgrid.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
-                </a>
-              </li> -->
+             
             </ul>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
+            @if(Auth::user()->role == 'IT')
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Regulator
                 <i class="fas fa-angle-left right"></i>
               </p>
+              @endif
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -212,28 +209,21 @@
                   <p>Data Portofolio</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/jsgrid.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
-                </a>
-              </li> -->
+              
             </ul>
-          </li
+            </li>
 
-
+          
           <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="fa fa-user"></i>
+            <a href="/users" class="nav-link">
+            @if(Auth::user()->role == 'IT')
+            <i class="fa fa-users"></i>
               <p> USERS</p>
+              @endif
             </a>
           </li>
+         
+         
 
 
 
@@ -278,10 +268,13 @@
 
 
 <!-- DataTables  & Plugins -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
@@ -292,6 +285,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
 <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+
+
 
 @stack('js')
 

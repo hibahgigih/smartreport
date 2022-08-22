@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="{{ url('template/dist/img/logo.png') }}">
   <title>PT. Asuransi Staco Mandiri</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -22,7 +23,7 @@
       <img height="60" src="{{ asset('template/dist/img/logo.png') }}" alt="RADMIN" >
   </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Silahkan login</p>
 
       <form action="/loginproses" method="post">
         @csrf 
@@ -47,13 +48,13 @@
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
-                Remember Me
+                Ingat saya
               </label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
           </div>
           <!-- /.col -->
         </div>
