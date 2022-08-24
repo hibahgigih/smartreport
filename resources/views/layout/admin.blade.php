@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/select/1.4.0/css/select.dataTables.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
-  
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
 </head>
@@ -100,10 +100,10 @@
             </a>
             </li>
 
-        
+
           <li class="nav-item">
             <a href="#" class="nav-link">
-            @if(Auth::user()->role == 'IT' || Auth::user()->role == 'Klaim')
+            @if(Auth::user()->role == 'it' || Auth::user()->role == 'Klaim')
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Klaim
@@ -129,7 +129,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-            @if(Auth::user()->role == 'IT' || Auth::user()->role == 'Uw' )
+            @if(Auth::user()->role == 'it' || Auth::user()->role == 'Uw' )
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Teknik
@@ -173,7 +173,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-            @if(Auth::user()->role == 'IT' || Auth::user()->role == 'Aktuaris')
+            @if(Auth::user()->role == 'it' || Auth::user()->role == 'Aktuaris')
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Aktuaris
@@ -188,13 +188,13 @@
                   <p>Data Portofolio</p>
                 </a>
               </li>
-             
+
             </ul>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-            @if(Auth::user()->role == 'IT')
+            @if(Auth::user()->role == 'it')
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Regulator
@@ -209,21 +209,21 @@
                   <p>Data Portofolio</p>
                 </a>
               </li>
-              
+
             </ul>
             </li>
 
-          
+
           <li class="nav-item">
             <a href="/users" class="nav-link">
-            @if(Auth::user()->role == 'IT')
+            @if(Auth::user()->role == 'it')
             <i class="fa fa-users"></i>
               <p> USERS</p>
               @endif
             </a>
           </li>
-         
-         
+
+
 
 
 
